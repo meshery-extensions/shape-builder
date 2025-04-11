@@ -24,6 +24,8 @@
 
 # dependencies
 site/node_modules
+site/.cache
+site/public
 site/.pnp
 site/.pnp.js
 
