@@ -22,7 +22,7 @@ setup:
 
 ## Build site; generate static site
 build:
-	cd site; npx gatsby build && gatsby serve; cd ..
+	cd site; npm build; cd.. 
 
 ## Build and run site
 site:
