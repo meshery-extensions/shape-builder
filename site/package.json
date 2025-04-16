@@ -15,12 +15,16 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@layer5/sistent": "^0.14.171",
+    "@layer5/sistent": "^0.14.173",
     "babel-plugin-styled-components": "^2.1.4",
     "gatsby": "^5.14.1",
     "gatsby-plugin-styled-components": "^6.14.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "styled-components": "^6.1.17"
+    "styled-components": "^6.1.17",
+    "url": "^0.11.4",
+    "xstate": "^5.19.2"
   }
 }
