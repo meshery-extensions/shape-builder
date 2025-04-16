@@ -16,15 +16,16 @@
   },
   "dependencies": {
     "@layer5/sistent": "^0.14.173",
+    "@mui/icons-material": "^5.15.14",
     "babel-plugin-styled-components": "^2.1.4",
-    "gatsby": "^5.14.1",
+    "gatsby": "^5.14.0",
     "gatsby-plugin-styled-components": "^6.14.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "styled-components": "^6.1.17",
-    "url": "^0.11.4",
-    "xstate": "^5.19.2"
+    "url": "^0.11.3",
+    "xstate": "^5.19.0"
   }
 }

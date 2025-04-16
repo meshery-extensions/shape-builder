@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy-preview:
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'meshery-extensions/shape-builder'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
