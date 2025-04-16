@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, Controls, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
 import { Button, Typography } from "@layer5/sistent";
 
+// import { useTheme } from "@layer5/sistent/components/ThemeProvider";
+// import { useMediaQuery } from "@layer5/sistent/components/MediaQuery";
+
+
 const ShapeBuilder = () => {
   const boardRef = useRef(null);
   const polyRef = useRef(null);

@@ -12,7 +12,7 @@ on:
 jobs:
   notify-remote-provider-build:
     name: Notify Remote Providers of Release
-    if: github.repository == 'meshery/meshery'
+    if: github.repository == 'meshery-extensions/shape-builder'
     runs-on: ubuntu-24.04
     steps:
     - name: trigger plugins for edge
