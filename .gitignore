@@ -11,56 +11,40 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Go workspace file
-go.work
-go.work.sum
-
 # env file
 .env
 
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# Dependency directories (remove the comment below to include it)
+# vendor/
 
-# Test binary, build with `go test -c`
-*.test
+# IDEs
+.vscode/*
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# UI
-**/node_modules/
-**/out/
-**/.next/
-*/npm-debug.log
-yarn.lock
+# dependencies
+site/node_modules
+site/.cache
+site/public
+site/.pnp
+site/.pnp.js
 
-# Docs
-docs/_site
-docs/.sass-cache
-docs/.jekyll-metadata
-docs/.jekyll-cache
-.ruby-version
+# testing
+site/coverage
 
-# images
-default.profraw
+# production
+site/build
+
+# misc
+site/.DS_Store
+site/.env.local
+site/.env.development.local
+site/.env.test.local
+site/.env.production.local
+
+site/npm-debug.log*
+site/yarn-debug.log*
+site/yarn-error.log*
+
 .DS_Store
-
-# Generated binaries
-**/bin
-dist/**
-
-# IDE
-**/.idea
-.vscode/** */
-.cusorignore
-*.config
-
-# Meshery
-**errorutil_analyze_errors.json
-**errorutil_analyze_summary.json
-**errorutil_errors_export.json
-
+.github/.DS_Store
