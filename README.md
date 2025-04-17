@@ -59,13 +59,12 @@ A self-service engineering platform, <a href="https://meshery.io">Meshery</a>, i
 
 <img src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/site.png" width="100%" align="center" />
 
-Anyone can create new components. When they do, they can use a predefined shape to represent their new component. Alternatively, they can define their own polygon; their own shape. The matter in which shapes are defined is based on a number matrix from negative one to positive one.
+This Meshery extension offers an easy way to visually create polygons, outputting the format necessary for Kanvas to recognize and render your custom polygon shape. As a best practice, users are encouraged to select an existing or create acustom shape for their components to best visually signify the function of their component. See the [Components Shape Guide](https://docs.meshery.io/extensions/component-shape-guide) for a list of the built-in component shapes in Meshery.
 
-This Meshery extension offers an easy way to visually create polygons, outputting the format necessary for Kanvas to recognize and render your custom polygon shape.
+Interactively, explore existing component shapes easily by looking in [Meshery Playground](https://play.meshery.io) in the Kanvas extension's on the dock at the bottom of the screen. You will see the different types of component shapes in the "Shapes" model as examples.
 
-Explore existing component shapes easily by looking in Meshery Playground in the Kanvas extension's on the dock at the bottom of the screen. You will see the different types of component shapes in the "Shapes" model as examples.
+## Usage
 
-### Usage
 Once you have created your custom shape, export your matrix notation and use within a `polygon` shape in your Meshery Component. For example, the following is a plus icon:
 
 #### Custom Shape Example 
@@ -74,6 +73,10 @@ Once you have created your custom shape, export your matrix notation and use wit
 ```
 -0.33 -1 0.33 -1 0.33 -0.33 1 -0.33 1 0.33 0.33 0.33 0.33 1 -0.33 1 -0.33 0.33 -1 0.33 -1 -0.33 -0.33 -0.33
 ```
+
+### Additional Details
+
+Anyone can create new components. When they do, they can use a predefined shape to represent their new component. Alternatively, they can define their own polygon; their own shape. The manner in which shapes are defined is based on a number matrix from negative one to positive one.
 
 <div>&nbsp;</div>
 
