@@ -40,8 +40,8 @@ MESHERY IS A CLOUD NATIVE COMPUTING FOUNDATION PROJECT
 </p>
 
 <div align="center" width="100%">
-<img src=".github/assets/images/readme/cncf-white.svg#gh-dark-mode-only" width="30%" align="center" />
-<img src=".github/assets/images/readme/cncf-black.svg#gh-light-mode-only" width="30%" align="center" />
+<img src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/readme/cncf-white.svg#gh-dark-mode-only" width="30%" align="center" />
+<img src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/readme/cncf-black.svg#gh-light-mode-only" width="30%" align="center" />
 </div>
 <br />
 <p align="center">
@@ -50,12 +50,15 @@ A self-service engineering platform, <a href="https://meshery.io">Meshery</a>, i
 <br />
 
 <div align="center" width="100%">
- <a href="https://youtu.be/Do7htKrRzDA"><img src=".github/assets/images/readme/thumbnail.png" width="800px" /></a>
+ <a href="https://youtu.be/Do7htKrRzDA"><img src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/readme/thumbnail.png" width="800px" /></a>
  <p><i>Example extension. See other <a href="https://meshery.io/extensions">Meshery Extensions</a>.</i></p>
  <br />Try Meshery in the <a href="https://play.meshery.io">Cloud Native Playground</a> (<a href="https://www.youtube.com/watch?v=034nVaQUyME&list=PL3A-A6hPO2IO_yzN83wSJJUNQActzCJvO&index=9">teaser video</a>)
 </div>
 
 # Shape Builder
+
+<img src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/site.png" width="100%" align="center" />
+
 Anyone can create new components. When they do, they can use a predefined shape to represent their new component. Alternatively, they can define their own polygon; their own shape. The matter in which shapes are defined is based on a number matrix from negative one to positive one.
 
 This Meshery extension offers an easy way to visually create polygons, outputting the format necessary for Kanvas to recognize and render your custom polygon shape.
