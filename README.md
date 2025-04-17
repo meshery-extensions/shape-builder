@@ -55,6 +55,23 @@ A self-service engineering platform, <a href="https://meshery.io">Meshery</a>, i
  <br />Try Meshery in the <a href="https://play.meshery.io">Cloud Native Playground</a> (<a href="https://www.youtube.com/watch?v=034nVaQUyME&list=PL3A-A6hPO2IO_yzN83wSJJUNQActzCJvO&index=9">teaser video</a>)
 </div>
 
+# Shape Builder
+Anyone can create new components. When they do, they can use a predefined shape to represent their new component. Alternatively, they can define their own polygon; their own shape. The matter in which shapes are defined is based on a number matrix from negative one to positive one.
+
+This Meshery extension offers an easy way to visually create polygons, outputting the format necessary for Kanvas to recognize and render your custom polygon shape.
+
+Explore existing component shapes easily by looking in Meshery Playground in the Kanvas extension's on the dock at the bottom of the screen. You will see the different types of component shapes in the "Shapes" model as examples.
+
+### Usage
+Once you have created your custom shape, export your matrix notation and use within a `polygon` shape in your Meshery Component. For example, the following is a plus icon:
+
+#### Custom Shape Example 
+![Image](https://github.com/user-attachments/assets/4d022a7a-bb78-44e3-9c95-f36b47bd2c97)
+
+```
+-0.33 -1 0.33 -1 0.33 -0.33 1 -0.33 1 0.33 0.33 0.33 0.33 1 -0.33 1 -0.33 0.33 -1 0.33 -1 -0.33 -0.33 -0.33
+```
+
 <div>&nbsp;</div>
 
 ## Join the Meshery community!
