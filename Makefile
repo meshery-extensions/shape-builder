@@ -22,7 +22,7 @@ setup:
 
 ## Build site; generate static site
 build:
-	cd site; npm run build; cd.. 
+	cd site; npm run build; cd .. 
 
 ## Build and run site
 site:
