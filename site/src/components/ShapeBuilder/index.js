@@ -47,7 +47,7 @@ const ShapeBuilder = () => {
     if (!poly) return;
 
     if (e.ctrlKey) {
-      poly.draw("param", "snapToGrid", 20);
+      poly.draw("param", "snapToGrid", 16);
     }
 
     if (e.ctrlKey && e.key === "Enter") {
