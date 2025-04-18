@@ -47,7 +47,7 @@ const ShapeBuilder = () => {
     if (!poly) return;
 
     if (e.ctrlKey) {
-      poly.draw("param", "snapToGrid", 16);
+      poly.draw("param", "snapToGrid", 0.001);
     }
 
     if (e.ctrlKey && e.key === "Enter") {
@@ -66,7 +66,7 @@ const ShapeBuilder = () => {
   const handleKeyUp = (e) => {
     const poly = polyRef.current;
     if (!poly || e.ctrlKey) return;
-    poly.draw("param", "snapToGrid", 0.001);
+    poly.draw("param", "snapToGrid", 16);
   };
 
   const attachKeyListeners = () => {
@@ -105,7 +105,7 @@ const ShapeBuilder = () => {
         .draw()
         .attr({ stroke: "#00B39F", "stroke-width": 1, fill: "none" });
 
-      draw.draw("param", "snapToGrid", 0.001);
+      draw.draw("param", "snapToGrid", 16);
       draw.on("drawstart", attachKeyListeners);
       draw.on("drawdone", detachKeyListeners);
 
