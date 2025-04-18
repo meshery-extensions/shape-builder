@@ -11,8 +11,8 @@ const toggleStyle = {
         {theme === "dark" ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="auto"
-            height="auto"
+            width="24px"
+            height="24px"
             viewBox="0 0 24 24"
             fill="rgb(0,179,159)"
             stroke="none"
@@ -26,8 +26,8 @@ const toggleStyle = {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="auto"
-            height="auto"
+            width="24px"
+            height="24px"
             viewBox="0 0 24 24"
             fill="rgb(60, 73, 79)"
             stroke="rgb(60, 73, 79)"

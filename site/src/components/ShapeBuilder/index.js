@@ -12,6 +12,7 @@ const ShapeBuilder = () => {
   const polyRef = useRef(null);
   const keyHandlersRef = useRef({});
   const [result, setResult] = useState("");
+  const [error, setError] = useState(null);
 
   const showCytoArray = () => {
     const poly = polyRef.current;
@@ -82,19 +83,37 @@ const ShapeBuilder = () => {
   };
 
   const initializeDrawing = () => {
-    if (!boardRef.current || !window.SVG) return;
+    if (!boardRef.current) {
+      setError("Canvas reference not found");
+      return;
+    }
 
-    const draw = window.SVG(boardRef.current)
-      .size("100%", "100%")
-      .polygon()
-      .draw()
-      .attr({ stroke: "#00B39F", "stroke-width": 1, fill: "none" });
+    if (!window.SVG) {
+      setError("SVG.js not loaded");
+      return;
+    }
 
-    draw.draw("param", "snapToGrid", 0.001);
-    draw.on("drawstart", attachKeyListeners);
-    draw.on("drawdone", detachKeyListeners);
+    if (!window.SVG.Element.prototype.draw) {
+      setError("svg.draw.js plugin not loaded");
+      return;
+    }
 
-    polyRef.current = draw;
+    try {
+      const draw = window.SVG(boardRef.current)
+        .size("100%", "100%")
+        .polygon()
+        .draw()
+        .attr({ stroke: "#00B39F", "stroke-width": 1, fill: "none" });
+
+      draw.draw("param", "snapToGrid", 0.001);
+      draw.on("drawstart", attachKeyListeners);
+      draw.on("drawdone", detachKeyListeners);
+
+      polyRef.current = draw;
+      setError(null);
+    } catch (err) {
+      setError(`Failed to initialize drawing: ${err.message}`);
+    }
   };
 
   const clearShape = () => {
@@ -119,12 +138,27 @@ const ShapeBuilder = () => {
   };
 
   useEffect(() => {
-    if (!window.SVG || !window.SVG.Element.prototype.draw) {
-      console.error("SVG.js or svg.draw.js plugin not loaded.");
-      return;
-    }
+    const checkSVG = () => {
+      if (!window.SVG || !window.SVG.Element.prototype.draw) {
+        setError("SVG.js or svg.draw.js plugin not loaded");
+        return false;
+      }
+      return true;
+    };
 
-    initializeDrawing();
+    // Initial check
+    if (checkSVG()) {
+      initializeDrawing();
+    } else {
+      // If not loaded, try again after a short delay
+      const timer = setTimeout(() => {
+        if (checkSVG()) {
+          initializeDrawing();
+        }
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
 
     return () => {
       detachKeyListeners();
@@ -147,6 +181,20 @@ const ShapeBuilder = () => {
           </defs>
           <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
         </StyledSVG>
+        {error && (
+          <div style={{ 
+            position: 'absolute', 
+            top: '50%', 
+            left: '50%', 
+            transform: 'translate(-50%, -50%)',
+            color: 'red',
+            backgroundColor: 'white',
+            padding: '10px',
+            borderRadius: '5px'
+          }}>
+            {error}
+          </div>
+        )}
       </CanvasContainer>
 
       <Controls>
