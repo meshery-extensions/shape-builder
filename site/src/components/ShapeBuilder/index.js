@@ -1,7 +1,7 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
-import { Wrapper, Controls, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
-import { Button, Typography } from "@layer5/sistent";
+import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
+import { Button, Typography, Box } from "@layer5/sistent";
 
 // import { useTheme } from "@layer5/sistent/components/ThemeProvider";
 // import { useMediaQuery } from "@layer5/sistent/components/MediaQuery";
@@ -182,10 +182,10 @@ const ShapeBuilder = () => {
           <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
         </StyledSVG>
         {error && (
-          <div style={{ 
-            position: 'absolute', 
-            top: '50%', 
-            left: '50%', 
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
             transform: 'translate(-50%, -50%)',
             color: 'red',
             backgroundColor: 'white',
@@ -197,11 +197,11 @@ const ShapeBuilder = () => {
         )}
       </CanvasContainer>
 
-      <Controls>
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 3, mb: 3, flexWrap: 'wrap' }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
-        <Button variant="outlined" onClick={closeShape}>Close Shape</Button>
+        <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
-      </Controls>
+      </Box>
 
       <OutputBox>
         <Typography variant="subtitle1" component="h6">
