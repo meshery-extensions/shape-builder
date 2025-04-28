@@ -1,13 +1,14 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
-import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
-import { Button, Typography, Box } from "@layer5/sistent";
-
+import { Wrapper, CanvasContainer, StyledSVG } from "./shapeBuilder.styles";
+import { Button, Box } from "@layer5/sistent";
+import { useNotificationHandlers } from "../utils/notification-handlers"
 // import { useTheme } from "@layer5/sistent/components/ThemeProvider";
 // import { useMediaQuery } from "@layer5/sistent/components/MediaQuery";
 
 
 const ShapeBuilder = () => {
+  const { handleError, handleSuccess } = useNotificationHandlers();
   const boardRef = useRef(null);
   const polyRef = useRef(null);
   const keyHandlersRef = useRef({});
@@ -137,6 +138,16 @@ const ShapeBuilder = () => {
     showCytoArray();
   };
 
+  const copyToClipboard = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(result).then(() => {
+        handleSuccess("Coordinates copied to clipboard!");
+      }).catch(err => {
+        handleError("Failed to copy to clipboard: " + err);
+      });
+    }
+  };
+
   useEffect(() => {
     const checkSVG = () => {
       if (!window.SVG || !window.SVG.Element.prototype.draw) {
@@ -202,13 +213,7 @@ const ShapeBuilder = () => {
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
       </Box>
-
-      <OutputBox>
-        <Typography variant="subtitle1" component="h6">
-          Polygon Coordinates (SVG format):
-        </Typography>
-        <textarea readOnly value={result} />
-      </OutputBox>
+      <Button variant="contained" onClick={copyToClipboard}>Copy To Clipboard</Button>
     </Wrapper>
   );
 };
