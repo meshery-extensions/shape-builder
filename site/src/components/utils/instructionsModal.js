@@ -3,7 +3,7 @@ import { Modal, ModalBody, Typography, List, ListItem, ListItemText, ModalFooter
 
 const instructionPoints = [
   {
-    primary: "Press CTRL + Enter to close the shape",
+    primary: "Press ENTER to close the shape",
     secondary: "It won’t draw the last position of your cursor, don’t stress!"
   },
   {

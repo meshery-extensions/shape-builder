@@ -50,7 +50,7 @@ const ShapeBuilder = () => {
       poly.draw("param", "snapToGrid", 0.001);
     }
 
-    if (e.ctrlKey && e.key === "Enter") {
+    if (e.key === "Enter") {
       poly.draw("done");
       poly.fill("#00B39F");
       showCytoArray();
