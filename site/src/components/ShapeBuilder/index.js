@@ -183,21 +183,21 @@ const ShapeBuilder = () => {
         </StyledSVG>
         {error && (
           <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'red',
-            backgroundColor: 'white',
-            padding: '10px',
-            borderRadius: '5px'
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "red",
+            backgroundColor: "white",
+            padding: "10px",
+            borderRadius: "5px"
           }}>
             {error}
           </div>
         )}
       </CanvasContainer>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 3, mb: 3, flexWrap: 'wrap' }}>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
