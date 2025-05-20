@@ -1,5 +1,3 @@
-import React from "react";
-
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <script key="svg-js" src="/js/svg.min.js" async={false} />,
