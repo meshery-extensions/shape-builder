@@ -138,27 +138,22 @@ const ShapeBuilder = () => {
   };
 
   useEffect(() => {
-    const checkSVG = () => {
-      if (!window.SVG || !window.SVG.Element.prototype.draw) {
+    let retries = 0;
+    const maxRetries = 10;
+    const interval = 200;
+
+    const waitForSVG = () => {
+      if (window.SVG && window.SVG.Element.prototype.draw) {
+        initializeDrawing();
+      } else if (retries < maxRetries) {
+        retries++;
+        setTimeout(waitForSVG, interval);
+      } else {
         setError("SVG.js or svg.draw.js plugin not loaded");
-        return false;
       }
-      return true;
     };
 
-    // Initial check
-    if (checkSVG()) {
-      initializeDrawing();
-    } else {
-      // If not loaded, try again after a short delay
-      const timer = setTimeout(() => {
-        if (checkSVG()) {
-          initializeDrawing();
-        }
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
+    waitForSVG();
 
     return () => {
       detachKeyListeners();
