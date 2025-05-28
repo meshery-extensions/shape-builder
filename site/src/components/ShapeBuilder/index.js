@@ -1,11 +1,11 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
-import { Wrapper, CanvasContainer, StyledSVG } from "./shapeBuilder.styles";
-import { Button, Box } from "@layer5/sistent";
-import { useNotificationHandlers } from "../utils/notification-handlers"
-// import { useTheme } from "@layer5/sistent/components/ThemeProvider";
-// import { useMediaQuery } from "@layer5/sistent/components/MediaQuery";
+import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
+import { Button, Typography, Box } from "@layer5/sistent";
+import { SVG, extend as SVGextend } from '@svgdotjs/svg.js';
+import draw from '@svgdotjs/svg.draw.js';
 
+SVGextend(SVG.Polygon, draw);
 
 const ShapeBuilder = () => {
   const { handleError, handleSuccess } = useNotificationHandlers();
@@ -15,30 +15,46 @@ const ShapeBuilder = () => {
   const [result, setResult] = useState("");
   const [error, setError] = useState(null);
 
+  const getPlottedPoints = (poly) => {
+    if (!poly) return null;
+    const plotted = poly.plot();
+    const points = Array.isArray(plotted) ? plotted : plotted?.value;
+    return Array.isArray(points) ? points : null;
+  };
+
   const showCytoArray = () => {
     const poly = polyRef.current;
     if (!poly) return;
 
-    const points = poly.array().value;
-    const normalized = points
-      .map(([x, y]) => [(x - 260) / 260, (y - 260) / 260])
-      .flat()
-      .join(" ");
-    setResult(normalized);
+    try {
+      const points = getPlottedPoints(poly);
+      if (!points) throw new Error("Invalid or empty polygon points");
+
+      const normalized = points
+        .map(([x, y]) => [(x - 260) / 260, (y - 260) / 260])
+        .flat()
+        .join(" ");
+      setResult(normalized);
+      setError(null);
+    } catch (err) {
+      setError("Failed to extract and normalize polygon points.");
+      console.error("showCytoArray error:", err);
+    }
   };
 
   const handleMaximize = () => {
     const poly = polyRef.current;
     if (!poly) return;
 
-    const points = poly.array().value;
+    const points = getPlottedPoints(poly);
+    if (!points) return;
     const xs = points.map(p => p[0]);
     const ys = points.map(p => p[1]);
 
     const width = Math.abs(Math.max(...xs) - Math.min(...xs));
     const height = Math.abs(Math.max(...ys) - Math.min(...ys));
 
-    poly.size(width > height ? 520 : null, height >= width ? 520 : null);
+    poly.size(width > height ? 520 : undefined, height >= width ? 520 : undefined);
     poly.move(0, 0);
     showCytoArray();
   };
@@ -51,16 +67,16 @@ const ShapeBuilder = () => {
       poly.draw("param", "snapToGrid", 0.001);
     }
 
-    if (e.ctrlKey && e.key === "Enter") {
+    if (e.key === "Enter") {
       poly.draw("done");
       poly.fill("#00B39F");
       showCytoArray();
     }
 
     if (e.ctrlKey && e.key.toLowerCase() === "z") {
-      const points = poly.array().value;
-      points.pop();
-      poly.plot(points);
+      const points = getPlottedPoints(poly);
+      if (!points) return;
+      poly.plot(points.slice(0, -1)); 
     }
   };
 
@@ -89,18 +105,9 @@ const ShapeBuilder = () => {
       return;
     }
 
-    if (!window.SVG) {
-      setError("SVG.js not loaded");
-      return;
-    }
-
-    if (!window.SVG.Element.prototype.draw) {
-      setError("svg.draw.js plugin not loaded");
-      return;
-    }
-
     try {
-      const draw = window.SVG(boardRef.current)
+      const draw = SVG()
+        .addTo(boardRef.current)
         .size("100%", "100%")
         .polygon()
         .draw()
@@ -149,28 +156,7 @@ const ShapeBuilder = () => {
   };
 
   useEffect(() => {
-    const checkSVG = () => {
-      if (!window.SVG || !window.SVG.Element.prototype.draw) {
-        setError("SVG.js or svg.draw.js plugin not loaded");
-        return false;
-      }
-      return true;
-    };
-
-    // Initial check
-    if (checkSVG()) {
-      initializeDrawing();
-    } else {
-      // If not loaded, try again after a short delay
-      const timer = setTimeout(() => {
-        if (checkSVG()) {
-          initializeDrawing();
-        }
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-
+    initializeDrawing();
     return () => {
       detachKeyListeners();
       if (polyRef.current) {

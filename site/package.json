@@ -20,6 +20,8 @@
   "dependencies": {
     "@layer5/sistent": "^0.14.173",
     "@mui/icons-material": "^5.15.14",
+    "@svgdotjs/svg.draw.js": "^3.0.2",
+    "@svgdotjs/svg.js": "^3.2.4",
     "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^7.32.0",
     "gatsby": "^5.14.0",

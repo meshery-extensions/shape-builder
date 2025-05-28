@@ -1,8 +1,3 @@
-import React from "react";
+// gatsby-ssr.js
 
-export const onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents([
-    <script key="svg-js" src="/js/svg.min.js" async={false} />,
-    <script key="svg-draw-js" src="/js/svg.draw.min.js" async={false} />,
-  ]);
-};
+// TODO: apply SistentThemeProvider to root, once everything is migrated to Sistent
