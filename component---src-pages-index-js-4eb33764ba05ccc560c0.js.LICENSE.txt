@@ -4,6 +4,17 @@
 	http://jedwatson.github.io/classnames
 */
 
+/*!
+* @svgdotjs/svg.draw.js - An extension for svg.js which allows to draw elements with mouse
+* @version 3.0.2
+* https://github.com/svgdotjs/svg.draw.js
+*
+* @copyright [object Object]
+* @license MIT
+*
+* BUILT: Sun Nov 17 2024 09:42:46 GMT+0100 (Central European Standard Time)
+*/
+
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 
 /**
