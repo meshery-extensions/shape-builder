@@ -18,8 +18,8 @@
     "pretest": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
-    "@layer5/sistent": "^0.14.173",
     "@mui/icons-material": "^5.15.14",
+    "@sistent/sistent": "^0.14.199",
     "@svgdotjs/svg.draw.js": "^3.0.2",
     "@svgdotjs/svg.js": "^3.2.4",
     "babel-plugin-styled-components": "^2.1.4",
