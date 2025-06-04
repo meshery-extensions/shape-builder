@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import styled from "@layer5/sistent";
+// import styled from "@sistent/sistent";
 
 // NOTE: background colors are hardcoded-temporarily for testing
 

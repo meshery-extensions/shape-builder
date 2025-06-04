@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalBody, Typography, List, ListItem, ListItemText, ModalFooter } from "@layer5/sistent";
+import { Modal, ModalBody, Typography, List, ListItem, ListItemText, ModalFooter } from "@sistent/sistent";
 
 const instructionPoints = [
   {

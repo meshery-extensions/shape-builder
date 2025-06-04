@@ -1,7 +1,7 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
-import { Button, Typography, Box } from "@layer5/sistent";
+import { Button, Typography, Box } from "@sistent/sistent";
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
 

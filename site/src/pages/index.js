@@ -5,7 +5,7 @@ import { useDarkMode } from "../components/useDarkMode";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ShapeBuilder from "../components/ShapeBuilder";
-import { Button, SistentThemeProviderWithoutBaseLine, Box } from "@layer5/sistent";
+import { Button, SistentThemeProviderWithoutBaseLine, Box } from "@sistent/sistent";
 import InstructionsModal from "../components/utils/instructionsModal";
 
 const IndexPage = () => {
