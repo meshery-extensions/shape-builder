@@ -5,7 +5,7 @@ import { useDarkMode } from "../components/useDarkMode";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ShapeBuilder from "../components/ShapeBuilder";
-import { Button, SistentThemeProviderWithoutBaseLine, Box, SistentThemeProvider } from "@layer5/sistent"
+import { Button, SistentThemeProviderWithoutBaseLine, Box } from "@layer5/sistent";
 import InstructionsModal from "../components/utils/instructionsModal";
 import { SnackbarProvider } from "notistack";
 import { CheckCircle, Error, Info, Warning } from "@mui/icons-material";

@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.styles";
 import { Button, Typography, Box } from "@layer5/sistent";
-import { SVG, extend as SVGextend } from '@svgdotjs/svg.js';
-import draw from '@svgdotjs/svg.draw.js';
+import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
+import draw from "@svgdotjs/svg.draw.js";
 
 SVGextend(SVG.Polygon, draw);
 
@@ -76,7 +76,7 @@ const ShapeBuilder = () => {
     if (e.ctrlKey && e.key.toLowerCase() === "z") {
       const points = getPlottedPoints(poly);
       if (!points) return;
-      poly.plot(points.slice(0, -1)); 
+      poly.plot(points.slice(0, -1));
     }
   };
 
@@ -180,21 +180,21 @@ const ShapeBuilder = () => {
         </StyledSVG>
         {error && (
           <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'red',
-            backgroundColor: 'white',
-            padding: '10px',
-            borderRadius: '5px'
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "red",
+            backgroundColor: "white",
+            padding: "10px",
+            borderRadius: "5px"
           }}>
             {error}
           </div>
         )}
       </CanvasContainer>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 3, mb: 3, flexWrap: 'wrap' }}>
+      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>

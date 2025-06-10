@@ -3,8 +3,8 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Meshery Shape Builder`,
-    siteUrl: `https://shapes.meshery.io`
+    title: "Meshery Shape Builder",
+    siteUrl: "https://shapes.meshery.io"
   },
   plugins: ["gatsby-plugin-styled-components"]
 };

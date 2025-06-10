@@ -11,5 +11,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run eslint
-      run: cd site && npm i eslint && npx eslint .
+      run: cd site && npm install && NODE_ENV=test npx eslint .
     

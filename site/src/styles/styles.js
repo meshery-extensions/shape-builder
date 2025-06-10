@@ -465,11 +465,11 @@ export const Main = styled.main`
 
 /* Export all styles as named exports (or as an object if you prefer) */
 const styles = {
-    GlobalStyle,
-    Header,
-    Main,
-    lightTheme,
-    darkTheme,
-  };
-  
-  export default styles;
+  GlobalStyle,
+  Header,
+  Main,
+  lightTheme,
+  darkTheme,
+};
+
+export default styles;

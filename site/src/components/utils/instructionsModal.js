@@ -20,7 +20,7 @@ const instructionPoints = [
   },
 ];
 
-const InstructionsModal = ({open, onClose}) => {
+const InstructionsModal = ({ open, onClose }) => {
 
   return (
     <Modal

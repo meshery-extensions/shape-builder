@@ -32,7 +32,7 @@ function Navigation({ theme, toggleTheme, showSignUpButton }) {
   }
   useEffect(() => {
     window.addEventListener("scroll", () =>
-setScroll((window.scrollY || window.pageYOffset) > 50)
+      setScroll((window.scrollY || window.pageYOffset) > 50)
     );
   }, []);
 
