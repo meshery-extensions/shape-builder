@@ -4,6 +4,7 @@ import { Wrapper, CanvasContainer, OutputBox, StyledSVG } from "./shapeBuilder.s
 import { Button, Typography, Box } from "@layer5/sistent";
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
+import { ContentCopy } from "@mui/icons-material";
 
 SVGextend(SVG.Polygon, draw);
 
@@ -66,6 +67,13 @@ const ShapeBuilder = () => {
       poly.draw("param", "snapToGrid", 0.001);
     }
 
+    if (e.key === "Escape" || (e.detail === 2)) {
+      poly.draw("done");
+      poly.fill("#00B39F");
+      showCytoArray();
+    }
+
+
     if (e.key === "Enter") {
       poly.draw("done");
       poly.fill("#00B39F");
@@ -116,6 +124,13 @@ const ShapeBuilder = () => {
       draw.on("drawstart", attachKeyListeners);
       draw.on("drawdone", detachKeyListeners);
 
+      draw.on("dblclick", () => {
+        draw.draw("done");
+        draw.fill("#00B39F");
+        showCytoArray();
+      });
+
+
       polyRef.current = draw;
       setError(null);
     } catch (err) {
@@ -123,7 +138,7 @@ const ShapeBuilder = () => {
     }
   };
 
-  const clearShape = () => {
+  const resetShape = () => {
     const poly = polyRef.current;
     if (!poly) return;
 
@@ -184,16 +199,35 @@ const ShapeBuilder = () => {
       </CanvasContainer>
 
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
-        <Button variant="contained" onClick={clearShape}>Clear</Button>
+        <Button variant="contained" onClick={resetShape}>Reset</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
       </Box>
 
       <OutputBox>
-        <Typography variant="subtitle1" component="h6">
-          Polygon Coordinates (SVG format):
-        </Typography>
-        <textarea readOnly value={result} />
+        <textarea
+          readOnly
+          value={result}
+          placeholder="Your polygon coordinates will appear here..."
+        />
+        <button
+          className="copy-btn"
+          onClick={() => {
+            navigator.clipboard.writeText(result).then(() => {
+              const btn = document.querySelector(".copy-btn");
+              const originalText = btn.textContent;
+              btn.textContent = "Copied!";
+              setTimeout(() => {
+                btn.textContent = originalText;
+              }, 2000);
+            }).catch(err => {
+              console.error("Failed to copy:", err);
+            });
+          }}
+          disabled={!result}
+        >
+          Copy Coordinates
+        </button>
       </OutputBox>
     </Wrapper>
   );

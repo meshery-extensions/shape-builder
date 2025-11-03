@@ -93,7 +93,9 @@ export const OutputBox = styled.div`
   max-width: 600px;
   margin: 0 auto;
   text-align: left;
-
+    display: flex;
+    flex-direction: column;
+   
   h6 {
     margin-bottom: 0.75rem;
     font-weight: 600;
@@ -112,6 +114,29 @@ export const OutputBox = styled.div`
     font-family: monospace;
     font-size: 0.95rem;
   }
+    
+    .copy-btn {
+        border-radius: 0.5rem;
+        align-self: center;
+        background-color: ${({ theme }) => theme.primary || "#00B39F"};
+        color: ${({ theme }) => theme.text || "#fff"};
+        padding: 0.5rem 1.5rem;
+        border: none;
+        cursor: pointer;
+        font-family: monospace;
+        font-size: 0.95rem;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+
+        &:hover {
+            background-color: ${({ theme }) => theme.primaryDark || "#009684"};
+        }
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 
   .error {
     color: red;
