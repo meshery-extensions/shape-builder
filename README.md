@@ -7,7 +7,7 @@ alt="Meshery Logo" width="70%" /></picture></a><br /><br /></p>
 <p align="center">
 <a href="https://hub.docker.com/r/meshery/meshery" alt="Docker pulls">
   <img src="https://img.shields.io/docker/pulls/layer5/meshery.svg" /></a>
-<a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Ameshery+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+org%3A+label%3A%22help+wanted%22+" alt="GitHub issues by-label">
+<a href="https://github.com/issues?q=is%3Aopen%20is%3Aissue%20archived%3Afalse%20(repo%3Ameshery%2Fmeshery%20OR%20repo%3Aservice-mesh-performance%2Fservice-mesh-performance%20OR%20repo%3Aservice-mesh-patterns%2Fservice-mesh-patterns)%20label%3A%22help%20wanted%22" alt="GitHub issues by-label">
   <img src="https://img.shields.io/github/issues/meshery/meshery/help%20wanted.svg?color=informational" /></a>
 <a href="https://github.com/meshery/meshery/blob/master/LICENSE" alt="LICENSE">
   <img src="https://img.shields.io/github/license/meshery/meshery?color=brightgreen" /></a>
@@ -84,7 +84,9 @@ Anyone can create new components. When they do, they can use a predefined shape 
 Our projects are community-built and welcome collaboration. 👍 Be sure to see the <a href="https://layer5.io/community/newcomers">Contributor Journey Map</a> and <a href="https://meshery.io/community#handbook">Community Handbook</a> for a tour of resources available to you and the <a href="https://layer5.io/community/handbook/repository-overview">Repository Overview</a> for a cursory description of repository by technology and programming language. Jump into community <a href="https://slack.meshery.io">Slack</a> or <a href="https://meshery.io/community#discussion-forums">discussion forum</a> to participate.
 
 <p style="clear:both;">
-<a href ="https://meshery.io/community"><img alt="MeshMates" src=".github/assets/images/readme/community-sign.png" style="margin-right:36px; margin-bottom:7px;" width="140px" align="left" /></a>
+
+<a href ="https://meshery.io/community/meshmates"><img alt="MeshMates" src="https://meshery.io/assets/images/logos/meshmate-light.svg" style="margin-right:36px; margin-bottom:7px;" width="140px" align="left" /></a>
+
 <h3>Find your MeshMate</h3>
 
 <p>MeshMates are experienced community members, who will help you learn your way around, discover live projects, and expand your community network. Connect with a Meshmate today!</p>
@@ -119,7 +121,7 @@ Learn more about the <a href="https://meshery.io/community#meshmates">MeshMates<
 </div>
 <br /><br />
 <p align="left">
-&nbsp;&nbsp;&nbsp;&nbsp; <i>Not sure where to start?</i> Grab an open issue with the <a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshery+org%3Alayer5labs+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+label%3A%22help+wanted%22+">help-wanted label</a>.
+&nbsp;&nbsp;&nbsp;&nbsp; <i>Not sure where to start?</i> Grab an open issue with the <a href="https://github.com/issues?q=is%3Aopen%20is%3Aissue%20archived%3Afalse%20(repo%3Alayer5io%2Flayer5%20OR%20repo%3Ameshery%2Fmeshery%20OR%20repo%3Aservice-mesh-performance%2Fservice-mesh-performance%20OR%20repo%3Aservice-mesh-patterns%2Fservice-mesh-patterns)%20label%3A%22help%20wanted%22">help-wanted label</a>.
 </p>
 <br /><br />
 
