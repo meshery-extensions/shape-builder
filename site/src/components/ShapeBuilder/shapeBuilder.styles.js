@@ -111,6 +111,12 @@ export const OutputBox = styled.div`
     resize: none;
     font-family: monospace;
     font-size: 0.95rem;
+    transition : border-color 0.3s ease;
+
+    &:focus {
+      outline:none;
+      border: 1px solid ${({ theme }) => theme.primary || "#009684"};
+    }
   }
 
   .error {
