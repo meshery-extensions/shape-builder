@@ -1,7 +1,4 @@
 import styled from "styled-components";
-// import styled from "@sistent/sistent";
-
-// NOTE: background colors are hardcoded-temporarily for testing
 
 export const Wrapper = styled.div`
   padding: 2rem;
@@ -100,8 +97,16 @@ export const OutputBox = styled.div`
     font-size: 1rem;
   }
 
+  /* FIXED: Changed from position relative to flex container */
+  > div {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+  }
+
   textarea {
-    width: 100%;
+    flex: 1;
     height: 80px;
     padding: 1rem;
     border: 1px solid ${({ theme }) => theme.border || "#24292E"};
@@ -111,6 +116,8 @@ export const OutputBox = styled.div`
     resize: none;
     font-family: monospace;
     font-size: 0.95rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .error {
@@ -119,22 +126,46 @@ export const OutputBox = styled.div`
   }
 `;
 
+/*  Changed positioning to work with flex container */
 export const CopyButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: -25px;
-  background: none;
-  border: none;
+  position: sticky;
+  top: 8px;
+  flex-shrink: 0;
+  min-width: 40px;
+  height: 40px;
+  background: ${({ theme }) => theme.primary || "#00B39F"};
+  border: 1px solid ${({ theme }) => theme.border || "#24292E"};
+  border-radius: 0.5rem;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 12px;
-  color: ${({ theme }) => theme.text};
+  color: #fff;
+  transition: all 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    background: ${({ theme }) => theme.primaryDark || "#009684"};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 179, 159, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   svg {
-    color: ${({ theme }) => theme.text};
-    fill: ${({ theme }) => theme.text};
+    color: #fff;
+    fill: #fff;
+    width: 20px;
+    height: 20px;
   }
 `;
 

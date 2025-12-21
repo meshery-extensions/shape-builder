@@ -24,7 +24,28 @@ const ShapeBuilder = () => {
       setTimeout(() => setShowCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy to clipboard:", err);
+      // Fallback for older browsers
+      fallbackCopyToClipboard(result);
     }
+  };
+
+  const fallbackCopyToClipboard = (text) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      setShowCopied(true);
+      setTimeout(() => setShowCopied(false), 2000);
+    } catch (err) {
+      console.error("Fallback copy failed:", err);
+    }
+
+    document.body.removeChild(textarea);
   };
 
   const getPlottedPoints = (poly) => {
@@ -211,15 +232,17 @@ const ShapeBuilder = () => {
         <Typography variant="subtitle1" component="h6">
           Polygon Coordinates (SVG format):
         </Typography>
-        <div style={{ position: "relative" }}>
+        {/* FIXED: Added flex container wrapper */}
+        <div>
           <textarea readOnly value={result} />
           {result.trim() && (
             <CopyButton
               onClick={handleCopyToClipboard}
               disabled={!result.trim()}
+              title={showCopied ? "Copied!" : "Copy to clipboard"}
             >
               {showCopied ? (
-                "Copied"
+                "✓"
               ) : (
                 <CopyIcon style={{ width: "20px", height: "20px" }} />
               )}
@@ -232,3 +255,5 @@ const ShapeBuilder = () => {
 };
 
 export default ShapeBuilder;
+
+
