@@ -140,51 +140,20 @@ export const CopyButton = styled.button`
 
 export const CoordinateDisplay = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  pointer-events: none;
   background-color: ${({ theme }) => theme?.mode === "light" ? "rgba(255, 255, 255, 0.95)" : "rgba(43, 43, 43, 0.95)"};
   border: 2px solid #00B39F;
-  border-radius: 8px;
-  padding: 12px 16px;
+  border-radius: 6px;
+  padding: 6px 10px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: ${({ theme }) => theme?.mode === "light" ? "#111" : "#fff"};
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
   user-select: none;
-  min-width: 150px;
-
-  .coordinate-label {
-    color: #00B39F;
-    font-size: 12px;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .coordinate-values {
-    display: flex;
-    gap: 16px;
-    margin-top: 8px;
-  }
-
-  .coordinate-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .axis-label {
-    font-size: 11px;
-    color: ${({ theme }) => theme?.mode === "light" ? "#666" : "#aaa"};
-  }
-
-  .axis-value {
-    font-size: 16px;
-    color: ${({ theme }) => theme?.mode === "light" ? "#111" : "#fff"};
-    font-weight: 700;
-  }
+  white-space: nowrap;
+  transition: left 0.05s ease-out, top 0.05s ease-out;
 `;
 
 // export const Wrapper = styled.div`

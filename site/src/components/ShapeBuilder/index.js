@@ -75,26 +75,29 @@ const ShapeBuilder = () => {
   };
   
   const handleMouseMove = (e) => {
-  const svg = boardRef.current;
-  if (!svg) return;
+    const svg = boardRef.current;
+    if (!svg) return;
 
-  const rect = svg.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-  const normalizedX = (x - centerX) / centerX;
-  const normalizedY = (y - centerY) / centerY;
+    const rect = svg.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const normalizedX = (x - centerX) / centerX;
+    const normalizedY = (y - centerY) / centerY;
 
-  setMouseCoords({
-    x: Math.round(x),
-    y: Math.round(y),
-    normalized: {
-      x: parseFloat(normalizedX.toFixed(3)),
-      y: parseFloat(normalizedY.toFixed(3))
-    }
-  });
-};
+    setMouseCoords({
+      x: Math.round(x),
+      y: Math.round(y),
+      normalized: {
+        x: parseFloat(normalizedX.toFixed(3)),
+        y: parseFloat(normalizedY.toFixed(3))
+      },
+
+      screenX: e.clientX,
+      screenY: e.clientY
+    });
+  };
 
   const handleMouseEnter = () => {
     setIsMouseInCanvas(true);
@@ -222,30 +225,16 @@ const ShapeBuilder = () => {
           <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
         </StyledSVG>
 
-        {isMouseInCanvas && (
-          <CoordinateDisplay>
-            <div className="coordinate-label">Mouse Position</div>
-            <div className="coordinate-values">
-              <div className="coordinate-item">
-                <span className="axis-label">X:</span>
-                <span className="axis-value">{mouseCoords.normalized.x}</span>
-              </div>
-              <div className="coordinate-item">
-                <span className="axis-label">Y:</span>
-                <span className="axis-value">{mouseCoords.normalized.y}</span>
-              </div>
-            </div>
-            <div style={{ 
-              marginTop: "8px", 
-              paddingTop: "8px", 
-              borderTop: "1px solid rgba(0, 179, 159, 0.3)",
-              fontSize: "10px",
-              color: "#666"
-            }}>
-              Pixel: ({mouseCoords.x}, {mouseCoords.y})
-            </div>
-          </CoordinateDisplay>
-        )}
+       {isMouseInCanvas && (
+        <CoordinateDisplay
+          style={{
+            left: `${mouseCoords.x + 15}px`,  
+            top: `${mouseCoords.y + 15}px`   
+          }}
+        >
+          X: {mouseCoords.normalized.x}, Y: {mouseCoords.normalized.y}
+        </CoordinateDisplay>
+      )}
 
         {error && (
           <div style={{
