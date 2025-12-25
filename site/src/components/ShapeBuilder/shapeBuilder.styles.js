@@ -100,17 +100,32 @@ export const OutputBox = styled.div`
     font-size: 1rem;
   }
 
-  textarea {
-    width: 100%;
-    height: 80px;
-    padding: 1rem;
+  /* Container with border that includes textarea and button */
+  > div {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
     border: 1px solid ${({ theme }) => theme.border || "#24292E"};
     border-radius: 0.5rem;
+    overflow: hidden;
     background-color: ${({ theme }) => theme.body || "#181B1F"};
+  }
+
+  textarea {
+    flex: 1;
+    height: 80px;
+    padding: 1rem;
+    padding-right: 0.75rem; /* 👈 slight gap from scrollbar */
+    border: none;
+    background-color: transparent;
     color: ${({ theme }) => theme.text || "#fff"};
     resize: none;
     font-family: monospace;
     font-size: 0.95rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    outline: none;
+    overflow-y: auto;
   }
 
   .error {
@@ -119,22 +134,48 @@ export const OutputBox = styled.div`
   }
 `;
 
+/* Copy button with slight spacing from scrollbar */
 export const CopyButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: -25px;
-  background: none;
+  position: sticky;
+  top: 8px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  min-width: 50px;
+  height: 36px;
+  margin: 8px 10px 8px 4px; /* 👈 tiny gap added */
+  padding: 8px 12px;
+  background: ${({ theme }) => theme.primary || "#00B39F"};
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 4px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 12px;
-  color: ${({ theme }) => theme.text};
+  color: #fff;
+  transition: all 0.2s ease;
+  z-index: 1;
+
+  &:hover {
+    background: ${({ theme }) => theme.primaryDark || "#009684"};
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 179, 159, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   svg {
-    color: ${({ theme }) => theme.text};
-    fill: ${({ theme }) => theme.text};
+    color: #fff;
+    fill: #fff;
+    width: 20px;
+    height: 20px;
   }
 `;
 
