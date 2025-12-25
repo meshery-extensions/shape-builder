@@ -98,13 +98,13 @@ const Footer = () => {
         </div>
         <div className="footer-links community">
           <h3 className="section-title">
-            <a className="title-link" href="https://meshery.io/community/#discussion-forums">
+            <a className="title-link" href="https://meshery.io/community#discussion-forums">
               Community
             </a>
           </h3>
           <ul className="section-categories">
             <li>
-              <a className="category-link" href="https://meshery.io/community/#discussion-forums">
+              <a className="category-link" href="https://meshery.io/community#discussion-forums">
                 Discussion Forum
               </a>
             </li>
