@@ -17,6 +17,7 @@ const ShapeBuilder = () => {
 
   const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0, normalized: { x: 0, y: 0 } });
   const [isMouseInCanvas, setIsMouseInCanvas] = useState(false);
+  const [showCoordinates, setShowCoordinates] = useState(true);
 
   const handleCopyToClipboard = async () => {
     if (!result.trim()) return;
@@ -105,6 +106,10 @@ const ShapeBuilder = () => {
 
   const handleMouseLeave = () => {
     setIsMouseInCanvas(false);
+  };
+
+  const toggleCoordinates = () => {
+  setShowCoordinates(prev => !prev);
   };
 
   const handleKeyDown = (e) => {
@@ -225,7 +230,7 @@ const ShapeBuilder = () => {
           <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
         </StyledSVG>
 
-       {isMouseInCanvas && (
+       {isMouseInCanvas && showCoordinates && (
         <CoordinateDisplay
           style={{
             left: `${mouseCoords.x + 15}px`,  
@@ -256,6 +261,7 @@ const ShapeBuilder = () => {
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
+        <Button variant="contained" onClick={toggleCoordinates}>{showCoordinates ? "Hide Coordinates" : "Show Coordinates"}</Button>
       </Box>
 
       <OutputBox>
