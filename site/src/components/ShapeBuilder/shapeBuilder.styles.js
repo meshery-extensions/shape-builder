@@ -153,7 +153,6 @@ export const CoordinateDisplay = styled.div`
   z-index: 1000;
   user-select: none;
   white-space: nowrap;
-  transition: left 0.05s ease-out, top 0.05s ease-out;
 `;
 
 // export const Wrapper = styled.div`
