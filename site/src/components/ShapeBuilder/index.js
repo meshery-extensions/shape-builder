@@ -1,6 +1,6 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
-import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CopyButton } from "./shapeBuilder.styles";
+import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CopyButton, CoordinateDisplay } from "./shapeBuilder.styles";
 import { Button, Typography, Box, CopyIcon } from "@sistent/sistent";
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
@@ -14,6 +14,10 @@ const ShapeBuilder = () => {
   const [result, setResult] = useState("");
   const [error, setError] = useState(null);
   const [showCopied, setShowCopied] = useState(false);
+
+  const [mouseCoords, setMouseCoords] = useState({ x: 0, y: 0, normalized: { x: 0, y: 0 } });
+  const [isMouseInCanvas, setIsMouseInCanvas] = useState(false);
+  const [showCoordinates, setShowCoordinates] = useState(true);
 
   const handleCopyToClipboard = async () => {
     if (!result.trim()) return;
@@ -69,6 +73,43 @@ const ShapeBuilder = () => {
     poly.size(width > height ? 520 : undefined, height >= width ? 520 : undefined);
     poly.move(0, 0);
     showCytoArray();
+  };
+  
+  const handleMouseMove = (e) => {
+    const svg = boardRef.current;
+    if (!svg) return;
+
+    const rect = svg.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const normalizedX = (x - centerX) / centerX;
+    const normalizedY = (y - centerY) / centerY;
+
+    setMouseCoords({
+      x: Math.round(x),
+      y: Math.round(y),
+      normalized: {
+        x: parseFloat(normalizedX.toFixed(3)),
+        y: parseFloat(normalizedY.toFixed(3))
+      },
+
+      screenX: e.clientX,
+      screenY: e.clientY
+    });
+  };
+
+  const handleMouseEnter = () => {
+    setIsMouseInCanvas(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseInCanvas(false);
+  };
+
+  const toggleCoordinates = () => {
+  setShowCoordinates(prev => !prev);
   };
 
   const handleKeyDown = (e) => {
@@ -177,6 +218,9 @@ const ShapeBuilder = () => {
           width="100%"
           height="100%"
           onDoubleClick={closeShape}
+          onMouseMove={handleMouseMove}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <defs>
             <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
@@ -185,6 +229,18 @@ const ShapeBuilder = () => {
           </defs>
           <rect className="grid" width="100%" height="100%" fill="url(#grid)" />
         </StyledSVG>
+
+       {isMouseInCanvas && showCoordinates && (
+        <CoordinateDisplay
+          style={{
+            left: `${mouseCoords.x + 15}px`,  
+            top: `${mouseCoords.y + 15}px`   
+          }}
+        >
+          X: {mouseCoords.normalized.x}, Y: {mouseCoords.normalized.y}
+        </CoordinateDisplay>
+      )}
+
         {error && (
           <div style={{
             position: "absolute",
@@ -205,6 +261,7 @@ const ShapeBuilder = () => {
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
         <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
+        <Button variant="contained" onClick={toggleCoordinates}>{showCoordinates ? "Hide Coordinates" : "Show Coordinates"}</Button>
       </Box>
 
       <OutputBox>

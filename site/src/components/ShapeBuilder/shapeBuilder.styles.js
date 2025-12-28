@@ -138,6 +138,23 @@ export const CopyButton = styled.button`
   }
 `;
 
+export const CoordinateDisplay = styled.div`
+  position: absolute;
+  pointer-events: none;
+  background-color: ${({ theme }) => theme?.mode === "light" ? "rgba(255, 255, 255, 0.95)" : "rgba(43, 43, 43, 0.95)"};
+  border: 2px solid #00B39F;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: ${({ theme }) => theme?.mode === "light" ? "#111" : "#fff"};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  user-select: none;
+  white-space: nowrap;
+`;
+
 // export const Wrapper = styled.div`
 //   padding: 2rem;
 //   background-color: ${({ theme }) => theme.palette.background.default};
