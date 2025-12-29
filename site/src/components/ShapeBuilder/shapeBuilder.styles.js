@@ -113,7 +113,7 @@ export const OutputBox = styled.div`
     font-size: 0.95rem;
     &:focus {
       outline:none;
-      border: 1px solid ${({ theme }) => theme.primary || "#009684"};
+      border: 1px solid ${({ theme }) => theme.primary};
     }
   }
 
@@ -134,11 +134,11 @@ export const CopyButton = styled.button`
   display: flex;
   align-items: center;
   font-size: 12px;
-  color: ${({ theme }) => theme.primary || "#009684"};
+  color: ${({ theme }) => theme.primary};
 
   svg {
-    color: ${({ theme }) => theme.primary || "#009684"};
-    fill: ${({ theme }) => theme.primary || "#009684"};
+    color: ${({ theme }) => theme.primary};
+    fill: ${({ theme }) => theme.primary};
   }
 `;
 
