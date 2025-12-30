@@ -80,6 +80,7 @@ For contributors who prefer using `make` instead of running individual `npm` com
 | `make clean` | Clean Gatsby cache and build artifacts |
 | `make lint` | Run linting checks |
 
+
 ### Example Workflow Using Make
 
 ```bash
