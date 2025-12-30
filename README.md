@@ -61,6 +61,38 @@ This Meshery extension offers an easy way to visually create polygons, outputtin
 
 Interactively, explore existing component shapes easily by looking in [Meshery Playground](https://play.meshery.io) in the Kanvas extension's on the dock at the bottom of the screen. You will see the different types of component shapes in the "Shapes" model as examples.
 
+## 🛠️ Make Commands Guide (Optional)
+
+For contributors who prefer using `make` instead of running individual `npm` commands, this project provides a Makefile with commonly used commands to simplify setup and development.
+
+### Prerequisites
+- `make` (pre-installed on most Linux and macOS systems)
+- Node.js and npm (as mentioned above)
+
+### Available Make Commands
+
+| Command | Description |
+|------|------------|
+| `make help` | Display all available make commands |
+| `make setup` | Install all required dependencies |
+| `make run` | Start the local development server |
+| `make build` | Create a production build |
+| `make clean` | Clean Gatsby cache and build artifacts |
+| `make lint` | Run linting checks |
+
+### Example Workflow Using Make
+
+```bash
+# Clone the repository
+git clone https://github.com/meshery-extensions/shape-builder.git
+cd shape-builder
+
+# Install dependencies
+make setup
+
+# Run the project locally
+make run
+
 ## Usage
 
 Once you have created your custom shape, export your matrix notation and use within a `polygon` shape in your Meshery Component. For example, the following is a plus icon:
