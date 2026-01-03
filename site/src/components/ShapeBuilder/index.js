@@ -1,19 +1,26 @@
 // /* global window */
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CopyButton } from "./shapeBuilder.styles";
-import { Button, Typography, Box, CopyIcon } from "@sistent/sistent";
+import { Button, Typography, Box, CopyIcon, Select, MenuItem, Slider, FormControl } from "@sistent/sistent";
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
 
 SVGextend(SVG.Polygon, draw);
 
+const SCALE_PRESETS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
+const MIN_SCALE = 0.1;
+const MAX_SCALE = 3;
+
 const ShapeBuilder = () => {
   const boardRef = useRef(null);
   const polyRef = useRef(null);
   const keyHandlersRef = useRef({});
+  const basePointsRef = useRef(null);
   const [result, setResult] = useState("");
   const [error, setError] = useState(null);
   const [showCopied, setShowCopied] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [currentPreset, setCurrentPreset] = useState(1);
 
   const handleCopyToClipboard = async () => {
     if (!result.trim()) return;
@@ -54,21 +61,53 @@ const ShapeBuilder = () => {
     }
   };
 
-  const handleMaximize = () => {
+  const applyScale = (newScale) => {
     const poly = polyRef.current;
     if (!poly) return;
 
     const points = getPlottedPoints(poly);
-    if (!points) return;
-    const xs = points.map(p => p[0]);
-    const ys = points.map(p => p[1]);
+    if (!points || points.length === 0) return;
+    
+    if (!basePointsRef.current) {
+      basePointsRef.current = points;
+    }
 
-    const width = Math.abs(Math.max(...xs) - Math.min(...xs));
-    const height = Math.abs(Math.max(...ys) - Math.min(...ys));
+    const basePoints = basePointsRef.current;
 
-    poly.size(width > height ? 520 : undefined, height >= width ? 520 : undefined);
-    poly.move(0, 0);
+    const xs = basePoints.map(p => p[0]);
+    const ys = basePoints.map(p => p[1]);
+    const centerX = (Math.max(...xs) + Math.min(...xs)) / 2;
+    const centerY = (Math.max(...ys) + Math.min(...ys)) / 2;
+
+    const scaledPoints = basePoints.map(([x, y]) => {
+      const dx = x - centerX;
+      const dy = y - centerY;
+      return [centerX + dx * newScale, centerY + dy * newScale];
+    });
+
+    poly.plot(scaledPoints);
     showCytoArray();
+  };
+
+  const handleScaleChange = (newScale) => {
+    const clampedScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale));
+    setScale(clampedScale);
+    
+    const matchingPreset = SCALE_PRESETS.find(p => Math.abs(p - clampedScale) < 0.01);
+    setCurrentPreset(matchingPreset || clampedScale);
+    
+    applyScale(clampedScale);
+  };
+
+  const handlePresetChange = (event) => {
+    const newPreset = event.target.value;
+    setCurrentPreset(newPreset);
+    setScale(newPreset);
+    applyScale(newPreset);
+  };
+
+  const handleSliderChange = (event, newValue) => {
+    handleScaleChange(newValue);
   };
 
   const handleKeyDown = (e) => {
@@ -144,7 +183,10 @@ const ShapeBuilder = () => {
     poly.remove();
     detachKeyListeners();
     polyRef.current = null;
+    basePointsRef.current = null;
     setResult("");
+    setScale(1);
+    setCurrentPreset(1);
     initializeDrawing();
   };
 
@@ -154,6 +196,10 @@ const ShapeBuilder = () => {
 
     poly.draw("done");
     poly.fill("#00B39F");
+    const points = getPlottedPoints(poly);
+    if (points && points.length > 0) {
+      basePointsRef.current = points;
+    }
     showCytoArray();
   };
 
@@ -201,10 +247,52 @@ const ShapeBuilder = () => {
         )}
       </CanvasContainer>
 
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
-        <Button variant="contained" onClick={handleMaximize}>Maximize</Button>
+        
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, ml: 2 }}>
+          <FormControl size="small" sx={{ minWidth: 80 }}>
+            <Select
+              id="scale-preset-select"
+              value={currentPreset}
+              onChange={handlePresetChange}
+              displayEmpty
+              aria-label="Scale preset"
+              sx={{
+                color: '#fff',
+                '& .MuiSelect-icon': {
+                  color: '#fff'
+                }
+              }}
+            >
+              {SCALE_PRESETS.map((preset) => (
+                <MenuItem key={preset} value={preset}>
+                  {preset}×
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <Box sx={{ width: 150, display: "flex", alignItems: "center", gap: 1 }}>
+            <Slider
+              value={scale}
+              onChange={handleSliderChange}
+              min={MIN_SCALE}
+              max={MAX_SCALE}
+              step={0.01}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(value) => `${value.toFixed(2)}×`}
+              marks={SCALE_PRESETS.map(value => ({ value, label: "" }))}
+              aria-label="Scale slider"
+              sx={{ flexGrow: 1 }}
+            />
+          </Box>
+
+          <Typography variant="body2" sx={{ minWidth: "50px", fontWeight: 500 }}>
+            {scale.toFixed(2)}×
+          </Typography>
+        </Box>
       </Box>
 
       <OutputBox>
