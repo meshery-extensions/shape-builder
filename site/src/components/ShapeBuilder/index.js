@@ -67,7 +67,7 @@ const ShapeBuilder = () => {
 
     const points = getPlottedPoints(poly);
     if (!points || points.length === 0) return;
-    
+
     if (!basePointsRef.current) {
       basePointsRef.current = points;
     }
@@ -92,10 +92,10 @@ const ShapeBuilder = () => {
   const handleScaleChange = (newScale) => {
     const clampedScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale));
     setScale(clampedScale);
-    
+
     const matchingPreset = SCALE_PRESETS.find(p => Math.abs(p - clampedScale) < 0.01);
     setCurrentPreset(matchingPreset || clampedScale);
-    
+
     applyScale(clampedScale);
   };
 
@@ -250,7 +250,7 @@ const ShapeBuilder = () => {
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
-        
+
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, ml: 2 }}>
           <FormControl size="small" sx={{ minWidth: 80 }}>
             <Select
@@ -260,9 +260,9 @@ const ShapeBuilder = () => {
               displayEmpty
               aria-label="Scale preset"
               sx={{
-                color: '#fff',
-                '& .MuiSelect-icon': {
-                  color: '#fff'
+                color: "#fff",
+                "& .MuiSelect-icon": {
+                  color: "#fff"
                 }
               }}
             >
