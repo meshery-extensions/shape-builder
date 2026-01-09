@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Download Site dir
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: public-dir
           github-token: ${{ secrets.RELEASE_NOTES_PATN }}
@@ -30,7 +30,7 @@ jobs:
 
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: 'docs/_site'
           production-deploy: false
