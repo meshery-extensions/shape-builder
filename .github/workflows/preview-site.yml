@@ -8,14 +8,16 @@ on:
 
 jobs:
   deploy-preview:
-    if: github.repository == 'meshery-extensions/shape-builder'
+    if: >
+      github.repository == 'meshery-extensions/shape-builder' &&
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@master
 
       - name: Download Site dir
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: public-dir
           github-token: ${{ secrets.RELEASE_NOTES_PATN }}
@@ -24,13 +26,14 @@ jobs:
 
       - name: Unzip Site
         run: |
-          rm -rf ./docs/_site
-          unzip public-dir.zip
+          rm -rf docs/_site
+          mkdir -p docs/_site
+          unzip public-dir.zip -d docs/_site
           rm -f public-dir.zip
 
       - name: Deploy to Netlify
         id: netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: 'docs/_site'
           production-deploy: false
