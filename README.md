@@ -159,7 +159,7 @@ cd shape-builder
 make setup
 
 # Run the project locally
-make run
+make site
 ```
 
 #### Available Make Commands
