@@ -255,6 +255,14 @@ const ShapeBuilder = ({ theme }) => {
             variant="outlined"
             onClick={() => setModalOpen(true)}
             title="View polygon coordinates"
+            sx={{
+              color: "#00B39F",
+              borderColor: "#00B39F",
+              "&:hover": {
+                borderColor: "#00B39F",
+                backgroundColor: "rgba(0, 179, 159, 0.08)",
+              },
+            }}
           >
             View Coordinates
           </Button>
