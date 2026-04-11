@@ -109,7 +109,7 @@ const IndexPage = () => {
             </Box>
           </section>
 
-          <ShapeBuilder />
+          <ShapeBuilder theme={activeTheme} />
         </Main>
         <Footer />
       </ThemeProvider>
