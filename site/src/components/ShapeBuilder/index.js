@@ -10,6 +10,8 @@ SVGextend(SVG.Polygon, draw);
 const SCALE_PRESETS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 3;
+const CONTROL_HEIGHT = "3.5rem";
+const CONTROL_FONT_SIZE = "1.35rem";
 
 const ShapeBuilder = () => {
   const boardRef = useRef(null);
@@ -248,26 +250,46 @@ const ShapeBuilder = () => {
       </CanvasContainer>
 
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
-        <Button variant="contained" onClick={clearShape}>Clear</Button>
-        <Button variant="contained" onClick={closeShape}>Close Shape</Button>
+        <Button variant="contained" onClick={clearShape} sx={{ height: CONTROL_HEIGHT, px: 3, textTransform: "none", fontSize: CONTROL_FONT_SIZE }}>Clear</Button>
+        <Button variant="contained" onClick={closeShape} sx={{ height: CONTROL_HEIGHT, px: 3, textTransform: "none", fontSize: CONTROL_FONT_SIZE }}>Close Shape</Button>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, ml: 2 }}>
-          <FormControl size="small" sx={{ minWidth: 80 }}>
+          <FormControl sx={{ minWidth: 96 }}>
             <Select
               id="scale-preset-select"
+              variant="outlined"
               value={currentPreset}
               onChange={handlePresetChange}
               displayEmpty
               aria-label="Scale preset"
               sx={{
-                color: "#fff",
+                height: CONTROL_HEIGHT,
+                fontSize: CONTROL_FONT_SIZE,
+                backgroundColor: "transparent",
+                color: "primary.main",
+                "& .MuiSelect-select": {
+                  minHeight: "unset",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: CONTROL_FONT_SIZE,
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "primary.main",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "primary.main",
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: "primary.main",
+                },
                 "& .MuiSelect-icon": {
-                  color: "#fff"
-                }
+                  color: "primary.main",
+                },
               }}
             >
               {SCALE_PRESETS.map((preset) => (
-                <MenuItem key={preset} value={preset}>
+                <MenuItem key={preset} value={preset} sx={{ fontSize: CONTROL_FONT_SIZE }}>
                   {preset}×
                 </MenuItem>
               ))}
@@ -289,7 +311,7 @@ const ShapeBuilder = () => {
             />
           </Box>
 
-          <Typography variant="body2" sx={{ minWidth: "50px", fontWeight: 500 }}>
+          <Typography variant="body2" sx={{ minWidth: "50px", fontWeight: 500, fontSize: CONTROL_FONT_SIZE }}>
             {scale.toFixed(2)}×
           </Typography>
         </Box>

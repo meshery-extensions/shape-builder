@@ -5,7 +5,7 @@ import { useDarkMode } from "../components/useDarkMode";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ShapeBuilder from "../components/ShapeBuilder";
-import { SistentThemeProviderWithoutBaseLine, Box } from "@sistent/sistent";
+import { SistentThemeProvider, Box } from "@sistent/sistent";
 
 const Kbd = styled.kbd`
   background-color: ${({ theme }) =>
@@ -60,7 +60,7 @@ const IndexPage = () => {
   const activeTheme = { ...themeMode, mode: theme };
 
   return (
-    <SistentThemeProviderWithoutBaseLine>
+    <SistentThemeProvider key={theme} initialMode={theme}>
       <ThemeProvider theme={activeTheme}>
         <GlobalStyle />
         <Navigation theme={theme} toggleTheme={toggleTheme} />
@@ -113,7 +113,7 @@ const IndexPage = () => {
         </Main>
         <Footer />
       </ThemeProvider>
-    </SistentThemeProviderWithoutBaseLine>
+    </SistentThemeProvider>
   );
 };
 
