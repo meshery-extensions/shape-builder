@@ -19,5 +19,5 @@ jobs:
     - name: Install dependencies
       run: cd site && npm install
     - name: Run ESLint
-      run: cd site && npm run checklint
+      run: cd site && NODE_ENV=test npm run checklint
     
