@@ -1,11 +1,6 @@
 import js from "@eslint/js";
 import reactPlugin from "eslint-plugin-react";
 import babelParser from "@babel/eslint-parser";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export default [
   js.configs.recommended,
@@ -19,6 +14,17 @@ export default [
       ".github/**",
       "assets/**",
       "public/**",
+      ".babelrc",
+      ".env.development",
+      "CNAME",
+      "CODE_OF_CONDUCT.md",
+      "CODEOWNERS",
+      "font-preload-cache.json",
+      "LICENSE",
+      "Makefile",
+      "README.md",
+      "package.json",
+      "package-lock.json",
     ],
     plugins: {
       react: reactPlugin,
@@ -44,9 +50,14 @@ export default [
         process: "readonly",
         module: "writable",
         require: "readonly",
+        exports: "writable",
         __dirname: "readonly",
         __filename: "readonly",
         define: "readonly",
+        setTimeout: "readonly",
+        setInterval: "readonly",
+        clearTimeout: "readonly",
+        clearInterval: "readonly",
       },
     },
     settings: {
