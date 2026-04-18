@@ -103,7 +103,7 @@ export const OutputBox = styled.div`
   textarea {
     width: 100%;
     height: 80px;
-    padding: 1rem;
+    padding: 1rem 2.5rem 1rem 1rem;
     border: 1px solid ${({ theme }) => theme.border || "#24292E"};
     border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.body || "#181B1F"};
@@ -111,6 +111,7 @@ export const OutputBox = styled.div`
     resize: none;
     font-family: monospace;
     font-size: 0.95rem;
+    box-sizing: border-box;
   }
 
   .error {
@@ -121,20 +122,45 @@ export const OutputBox = styled.div`
 
 export const CopyButton = styled.button`
   position: absolute;
-  top: 0;
-  right: -25px;
-  background: none;
-  border: none;
+  top: 8px;
+  right: 8px;
+  background: ${({ theme }) => theme.body || "#181B1F"};
+  border: 1px solid ${({ theme }) => theme.border || "#24292E"};
+  border-radius: 4px;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 12px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text || "#fff"};
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+  min-width: 32px;
+  min-height: 32px;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.primary || "#00B39F"};
+    border-color: ${({ theme }) => theme.primary || "#00B39F"};
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.primary || "#00B39F"};
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 
   svg {
-    color: ${({ theme }) => theme.text};
-    fill: ${({ theme }) => theme.text};
+    color: inherit;
+    fill: currentColor;
+    width: 18px;
+    height: 18px;
   }
 `;
 
