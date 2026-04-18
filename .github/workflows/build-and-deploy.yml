@@ -34,3 +34,4 @@ jobs:
           publish_dir: ./site/public
           publish_branch: gh-pages
           keep_files: true
+          cname: shapes.meshery.io
