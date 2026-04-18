@@ -3,9 +3,7 @@ import reactPlugin from "eslint-plugin-react";
 import babelParser from "@babel/eslint-parser";
 
 export default [
-  js.configs.recommended,
   {
-    files: ["**/*.{js,jsx}"],
     ignores: [
       "node_modules/**",
       "**/*.test.js",
@@ -26,6 +24,10 @@ export default [
       "package.json",
       "package-lock.json",
     ],
+  },
+  js.configs.recommended,
+  {
+    files: ["**/*.{js,jsx}"],
     plugins: {
       react: reactPlugin,
     },
