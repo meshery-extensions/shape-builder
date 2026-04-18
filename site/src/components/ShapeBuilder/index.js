@@ -4,6 +4,7 @@ import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CopyButton } from "./sh
 import { Button, Typography, Box, CopyIcon, Select, MenuItem, Slider, FormControl } from "@sistent/sistent";
 import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
 import draw from "@svgdotjs/svg.draw.js";
+import CoordinatesModal from "./CoordinatesModal";
 
 SVGextend(SVG.Polygon, draw);
 
@@ -11,7 +12,7 @@ const SCALE_PRESETS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 3;
 
-const ShapeBuilder = () => {
+const ShapeBuilder = ({ theme }) => {
   const boardRef = useRef(null);
   const polyRef = useRef(null);
   const keyHandlersRef = useRef({});
@@ -22,9 +23,11 @@ const ShapeBuilder = () => {
   const [scale, setScale] = useState(1);
   const [currentPreset, setCurrentPreset] = useState(1);
 
+  // ── Modal state ─────────────────────────────────────────────────────────────
+  const [modalOpen, setModalOpen] = useState(false);
+
   const handleCopyToClipboard = async () => {
     if (!result.trim()) return;
-
     try {
       await navigator.clipboard.writeText(result);
       setShowCopied(true);
@@ -44,17 +47,17 @@ const ShapeBuilder = () => {
   const showCytoArray = () => {
     const poly = polyRef.current;
     if (!poly) return;
-
     try {
       const points = getPlottedPoints(poly);
       if (!points) throw new Error("Invalid or empty polygon points");
-
       const normalized = points
         .map(([x, y]) => [(x - 260) / 260, (y - 260) / 260])
         .flat()
         .join(" ");
       setResult(normalized);
       setError(null);
+      // ── Open the modal whenever coordinates are ready ──
+      setModalOpen(true);
     } catch (err) {
       setError("Failed to extract and normalize polygon points.");
       console.error("showCytoArray error:", err);
@@ -64,27 +67,21 @@ const ShapeBuilder = () => {
   const applyScale = (newScale) => {
     const poly = polyRef.current;
     if (!poly) return;
-
     const points = getPlottedPoints(poly);
     if (!points || points.length === 0) return;
-
     if (!basePointsRef.current) {
       basePointsRef.current = points;
     }
-
     const basePoints = basePointsRef.current;
-
     const xs = basePoints.map(p => p[0]);
     const ys = basePoints.map(p => p[1]);
     const centerX = (Math.max(...xs) + Math.min(...xs)) / 2;
     const centerY = (Math.max(...ys) + Math.min(...ys)) / 2;
-
     const scaledPoints = basePoints.map(([x, y]) => {
       const dx = x - centerX;
       const dy = y - centerY;
       return [centerX + dx * newScale, centerY + dy * newScale];
     });
-
     poly.plot(scaledPoints);
     showCytoArray();
   };
@@ -92,10 +89,8 @@ const ShapeBuilder = () => {
   const handleScaleChange = (newScale) => {
     const clampedScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, newScale));
     setScale(clampedScale);
-
     const matchingPreset = SCALE_PRESETS.find(p => Math.abs(p - clampedScale) < 0.01);
     setCurrentPreset(matchingPreset || clampedScale);
-
     applyScale(clampedScale);
   };
 
@@ -113,17 +108,14 @@ const ShapeBuilder = () => {
   const handleKeyDown = (e) => {
     const poly = polyRef.current;
     if (!poly) return;
-
     if (e.ctrlKey) {
       poly.draw("param", "snapToGrid", 0.001);
     }
-
     if (e.key === "Enter" || e.key === "Escape") {
       poly.draw("done");
       poly.fill("#00B39F");
       showCytoArray();
     }
-
     if (e.ctrlKey && e.key.toLowerCase() === "z") {
       const points = getPlottedPoints(poly);
       if (!points) return;
@@ -155,20 +147,17 @@ const ShapeBuilder = () => {
       setError("Canvas reference not found");
       return;
     }
-
     try {
-      const draw = SVG()
+      const drawInstance = SVG()
         .addTo(boardRef.current)
         .size("100%", "100%")
         .polygon()
         .draw()
         .attr({ stroke: "#00B39F", "stroke-width": 1, fill: "none" });
-
-      draw.draw("param", "snapToGrid", 16);
-      draw.on("drawstart", attachKeyListeners);
-      draw.on("drawdone", detachKeyListeners);
-
-      polyRef.current = draw;
+      drawInstance.draw("param", "snapToGrid", 16);
+      drawInstance.on("drawstart", attachKeyListeners);
+      drawInstance.on("drawdone", detachKeyListeners);
+      polyRef.current = drawInstance;
       setError(null);
     } catch (err) {
       setError(`Failed to initialize drawing: ${err.message}`);
@@ -177,23 +166,23 @@ const ShapeBuilder = () => {
 
   const clearShape = () => {
     const poly = polyRef.current;
-    if (!poly) return;
-
-    poly.draw("cancel");
-    poly.remove();
-    detachKeyListeners();
-    polyRef.current = null;
-    basePointsRef.current = null;
+    if (poly) {
+      poly.draw("cancel");
+      poly.remove();
+      detachKeyListeners();
+      polyRef.current = null;
+      basePointsRef.current = null;
+    }
     setResult("");
     setScale(1);
     setCurrentPreset(1);
+    setModalOpen(false);
     initializeDrawing();
   };
 
   const closeShape = () => {
     const poly = polyRef.current;
     if (!poly) return;
-
     poly.draw("done");
     poly.fill("#00B39F");
     const points = getPlottedPoints(poly);
@@ -217,6 +206,16 @@ const ShapeBuilder = () => {
 
   return (
     <Wrapper>
+      {/* ── Coordinates Modal ─────────────────────────────────────────────── */}
+      {modalOpen && result && (
+        <CoordinatesModal
+          coordinates={result}
+          theme={theme}
+          onClose={() => setModalOpen(false)}
+          onClear={clearShape}
+        />
+      )}
+
       <CanvasContainer>
         <StyledSVG
           ref={boardRef}
@@ -250,6 +249,24 @@ const ShapeBuilder = () => {
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
         <Button variant="contained" onClick={clearShape}>Clear</Button>
         <Button variant="contained" onClick={closeShape}>Close Shape</Button>
+        {/* Re-open modal button — only shown when coordinates exist */}
+        {result && (
+          <Button
+            variant="outlined"
+            onClick={() => setModalOpen(true)}
+            title="View polygon coordinates"
+            sx={{
+              color: "#00B39F",
+              borderColor: "#00B39F",
+              "&:hover": {
+                borderColor: "#00B39F",
+                backgroundColor: "rgba(0, 179, 159, 0.08)",
+              },
+            }}
+          >
+            View Coordinates
+          </Button>
+        )}
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, ml: 2 }}>
           <FormControl size="small" sx={{ minWidth: 80 }}>
@@ -261,9 +278,7 @@ const ShapeBuilder = () => {
               aria-label="Scale preset"
               sx={{
                 color: "#fff",
-                "& .MuiSelect-icon": {
-                  color: "#fff"
-                }
+                "& .MuiSelect-icon": { color: "#fff" }
               }}
             >
               {SCALE_PRESETS.map((preset) => (
@@ -295,12 +310,13 @@ const ShapeBuilder = () => {
         </Box>
       </Box>
 
+      {/* ── Fallback output box (kept for accessibility / non-JS contexts) ── */}
       <OutputBox>
         <Typography variant="subtitle1" component="h6">
           Polygon Coordinates (SVG format):
         </Typography>
         <div style={{ position: "relative" }}>
-          <textarea readOnly value={result} />
+          <textarea readOnly value={result} aria-label="Polygon coordinates output" />
           {result.trim() && (
             <CopyButton
               onClick={handleCopyToClipboard}
