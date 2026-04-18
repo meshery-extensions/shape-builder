@@ -128,22 +128,39 @@ export const CopyButton = styled.button`
   border: 1px solid ${({ theme }) => theme.border || "#24292E"};
   border-radius: 4px;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 6px 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: 12px;
-  color: ${({ theme }) => theme.text};
-  opacity: 0.85;
-  transition: opacity 0.15s;
-  z-index: 1;
+  color: ${({ theme }) => theme.text || "#fff"};
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+  min-width: 32px;
+  min-height: 32px;
+  white-space: nowrap;
 
-  &:hover {
-    opacity: 1;
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.primary || "#00B39F"};
+    border-color: ${({ theme }) => theme.primary || "#00B39F"};
+    color: #fff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.primary || "#00B39F"};
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   svg {
-    color: ${({ theme }) => theme.text};
-    fill: ${({ theme }) => theme.text};
+    color: inherit;
+    fill: currentColor;
+    width: 18px;
+    height: 18px;
   }
 `;
 
