@@ -9,15 +9,15 @@ jobs:
     name: runner / eslint
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
-        cache-dependency-path: site/package-lock.json
-    - name: Install dependencies
-      run: cd site && npm install
-    - name: Run ESLint
-      run: cd site && NODE_ENV=test npm run checklint
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+      - name: Install dependencies
+        run: cd site && npm install
+      - name: Run ESLint
+        run: cd site && NODE_ENV=test npm run checklint
     
