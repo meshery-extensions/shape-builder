@@ -24,6 +24,10 @@ setup:
 build:
 	cd site; npm run build; cd .. 
 
+## Build site for PR preview deployment
+build-preview:
+	cd site; npm run build; cd ..
+
 ## Build and run site
 site:
 	cd site; npm start; cd ..
@@ -46,4 +50,4 @@ lint:
 docker:
 	docker run --name site -d --rm -p 4000:4000 -v `pwd`:"/srv/jekyll" jekyll/jekyll:4.0.0 bash -c "bundle install; jekyll serve --drafts --livereload"
 
-.PHONY: setup-libs site-setup build docker site setup
+.PHONY: setup-libs site-setup build build-preview docker site setup lint clean
