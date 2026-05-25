@@ -10,6 +10,7 @@ SVGextend(SVG.Polygon, draw);
 const SCALE_PRESETS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 const MIN_SCALE = 0.1;
 const MAX_SCALE = 3;
+const MIN_POLYGON_POINTS = 3;
 
 const ShapeBuilder = () => {
   const boardRef = useRef(null);
@@ -119,9 +120,7 @@ const ShapeBuilder = () => {
     }
 
     if (e.key === "Enter" || e.key === "Escape") {
-      poly.draw("done");
-      poly.fill("#00B39F");
-      showCytoArray();
+      closeShape();
     }
 
     if (e.ctrlKey && e.key.toLowerCase() === "z") {
@@ -195,11 +194,14 @@ const ShapeBuilder = () => {
     if (!poly) return;
 
     poly.draw("done");
-    poly.fill("#00B39F");
     const points = getPlottedPoints(poly);
-    if (points && points.length > 0) {
-      basePointsRef.current = points;
+    if (!points || points.length < MIN_POLYGON_POINTS) {
+      clearShape();
+      return;
     }
+
+    poly.fill("#00B39F");
+    basePointsRef.current = points;
     showCytoArray();
   };
 
@@ -259,12 +261,12 @@ const ShapeBuilder = () => {
               onChange={handlePresetChange}
               displayEmpty
               aria-label="Scale preset"
-              sx={{
-                color: "#fff",
+              sx={(theme) => ({
+                color: theme.palette.mode === "dark" ? "#fff" : "inherit",
                 "& .MuiSelect-icon": {
-                  color: "#fff"
-                }
-              }}
+                  color: theme.palette.mode === "dark" ? "#fff" : "inherit",
+                },
+              })}
             >
               {SCALE_PRESETS.map((preset) => (
                 <MenuItem key={preset} value={preset}>

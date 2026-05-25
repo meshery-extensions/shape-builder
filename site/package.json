@@ -1,3 +1,4 @@
+
 {
   "name": "site",
   "version": "1.0.0",
@@ -11,6 +12,7 @@
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
+    "build:preview": "gatsby build --prefix-paths",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint --fix .",
