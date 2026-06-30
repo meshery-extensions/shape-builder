@@ -17,7 +17,7 @@ assignees: ''
 
 ### General Contributor [Guides](https://docs.meshery.io/project/contributing) and [Handbook](https://layer5.io/community/handbook)
 
-- 🙋🏾🙋🏼 Questions: [Discussion Forum](https://meshery.io/community#discussion-forums) and [Community Slack](https://slack.meshery.io)
+- 🙋🏾🙋🏼 Questions: [Discussion Forum](https://discuss.meshery.io) and [Community Slack](https://slack.meshery.io)
 
 ### Understanding Meshery Models
 
