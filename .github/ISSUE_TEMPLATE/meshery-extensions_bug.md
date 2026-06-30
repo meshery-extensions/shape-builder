@@ -31,4 +31,4 @@ assignees: ''
 - 🎨 UI Design For Meshery Extensions [Figma](https://www.figma.com/file/SMP3zxOjZztdOLtgN4dS2W/Meshery-UI) in Figma [(open invite)](https://www.figma.com/team_invite/redeem/GvB8SudhEOoq3JOvoLaoMs)
 - 📚 [Meshery Extensibility Providers](https://docs.meshery.io/extensibility/providers)
 - ⌨️ [Meshery API Docs](https://docs.meshery.io/extensibility/api)
-- 🙋🏾🙋🏼 Questions: [Discussion Forum](https://meshery.io/community#discussion-forums) and [Community Slack](https://slack.meshery.io)
+- 🙋🏾🙋🏼 Questions: [Discussion Forum](https://discuss.meshery.io) and [Community Slack](https://slack.meshery.io)
