@@ -5,7 +5,7 @@ const toggleStyle = {
   cursor: "pointer",
 };
 
-export const Toggle = ({ theme, toggleTheme, height, width }) => {
+export const Toggle = ({ theme, toggleTheme }) => {
   return (
     <div className="themeToggle" onClick={toggleTheme} style={toggleStyle}>
       {theme === "dark" ? (

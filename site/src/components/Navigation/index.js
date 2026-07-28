@@ -9,7 +9,7 @@ import CloudIcon from "./CloudIcon";
 import KanvasIcon from "./KanvasIcon";
 import LogoutIcon from "./LogoutIcon";
 
-function Navigation({ theme, toggleTheme, showSignUpButton }) {
+function Navigation({ theme, toggleTheme }) {
   const [userData, setUserData] = useState(null);
   const [openNav, setOpenNav] = useState(false);
   const Logo = theme === "light" ? mesheryLogo : mesheryLogoLight;
