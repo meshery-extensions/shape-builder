@@ -111,6 +111,10 @@ export const OutputBox = styled.div`
     resize: none;
     font-family: monospace;
     font-size: 0.95rem;
+    &:focus {
+      outline:none;
+      border: 1px solid ${({ theme }) => theme.primary};
+    }
   }
 
   .error {
@@ -130,11 +134,11 @@ export const CopyButton = styled.button`
   display: flex;
   align-items: center;
   font-size: 12px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.primary};
 
   svg {
-    color: ${({ theme }) => theme.text};
-    fill: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.primary};
+    fill: ${({ theme }) => theme.primary};
   }
 `;
 
