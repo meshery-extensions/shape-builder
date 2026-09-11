@@ -1,76 +1,75 @@
+<!-- Top section -->
 <div>
-    <!-- Top section -->
-    <div>
-      <img alt="Meshery Extensions" src="https://raw.githubusercontent.com/meshery-extensions/.github/master/profile/assets/img/meshery-extensions-github.png" usemap="`#workmap`" />
-    </div>
-    <!-- Overview section -->
-    <div align="center">
-        <h3>Meshery is an extensible, self-service engineering plaform for the collaborative management of cloud and cloud native infrastructure.</h3>
-        <h3 align="center"><a href="https://meshery.io/extensions">Browse all extensions</a></h3>
-        <h5 align="center">
-            <a href="https://meshery.io#getting-started">Installation</a> |
-            <a href="https://docs.meshery.io">Documentation</a> |
-            <a href="https://discuss.meshery.io">Forum</a> |
-            <a href="https://play.meshery.io">Playground</a> |
-            <a href="https://meshery.io/catalog">Catalog</a>
-        </h5>
-        <br />
-    </div>
-    
-[Meshery Extensions](https://meshery.io/extension) are plugins or add-ons that enhance the functionality of the Meshery platform beyond its core capabilities. Meshery supports different types of extensions ([docs](https://docs.meshery.io/extensions/)):
+  <img alt="Meshery Extensions branding banner" src="https://raw.githubusercontent.com/meshery-extensions/.github/master/profile/assets/img/meshery-extensions-github.png" />
+</div>
+<!-- Overview section -->
+<div align="center">
+    <h3>Meshery is an extensible, self-service engineering platform for the collaborative management of cloud and cloud-native infrastructure.</h3>
+    <h3 align="center"><a href="https://meshery.io/extensions">Browse all extensions</a></h3>
+    <h5 align="center">
+        <a href="https://meshery.io#getting-started">Installation</a> |
+        <a href="https://docs.meshery.io">Documentation</a> |
+        <a href="https://discuss.meshery.io">Forum</a> |
+        <a href="https://play.meshery.io">Playground</a> |
+        <a href="https://meshery.io/catalog">Catalog</a>
+    </h5>
+    <br />
+</div>
 
-- [Adapters](https://docs.meshery.io/concepts/architecture/adapters): Adapters allow Meshery to interface with the different cloud native infrastructure.
+[Meshery Extensions](https://meshery.io/extensions) are plugins or add-ons that enhance the functionality of the Meshery platform beyond its core capabilities. Meshery supports different types of extensions ([docs](https://docs.meshery.io/extensions/)):
+
+- [Adapters](https://docs.meshery.io/concepts/architecture/adapters): Adapters allow Meshery to interface with different cloud-native infrastructure.
 - [Load Generators](https://docs.meshery.io/extensibility/load-generators): for performance characterization and benchmarking
-- [Integrations](https://docs.meshery.io/extensibility/integrations): model-based support for a broad variety of design and orchestration of cloud and cloud native platforms, tools, and technologies.
+- [Integrations](https://docs.meshery.io/extensibility/integrations): model-based support for a broad variety of design and orchestration of cloud and cloud-native platforms, tools, and technologies.
 - [Providers](https://docs.meshery.io/extensibility/providers): for connecting to different cloud providers and infrastructure platforms
 - [UI Plugins](https://docs.meshery.io/extensibility/ui): Meshery UI has a number of extension points that allow users to customize their experience with third-party plugins.
-- [CLI Plugins](https://docs.meshery.io/extensibility/cli-plugins): Helm and kubectl plugins that let you create Kanvas snapshots from Helm charts, Kubernetes manifests, and the current state of your Kubernetes cluster, then upload them to Meshery.
+- [CLI Plugins](https://docs.meshery.io/extensions/extensions): Helm and kubectl plugins that let you create Kanvas snapshots from Helm charts, Kubernetes manifests, and the current state of your Kubernetes cluster, then upload them to Meshery.
 <!-- Blog Post and Explanation section -->
 <!-- Video Section -->
-<h3 align="center">See Meshery and it's plugins in-action</h3>
-  <img alt="Meshery dashboard" src="https://raw.githubusercontent.com/meshery/.github/master/profile/assets/img/meshery-dashboard-hero-image.png" />
+<h3 align="center">See Meshery and its plugins in action</h3>
+<img alt="Meshery dashboard showing cloud-native infrastructure" src="https://raw.githubusercontent.com/meshery/.github/master/profile/assets/img/meshery-dashboard-hero-image.png" />
 
 # Shape Builder
 
 <p align="center">
-<a href="https://hub.docker.com/r/meshery/meshery" alt="Docker pulls">
-  <img src="https://img.shields.io/docker/pulls/meshery/meshery.svg" /></a>
-<a href="https://github.com/issues?q=is%3Aopen%20is%3Aissue%20archived%3Afalse%20(repo%3Ameshery%2Fmeshery%20OR%20repo%3Aservice-mesh-performance%2Fservice-mesh-performance%20OR%20repo%3Aservice-mesh-patterns%2Fservice-mesh-patterns)%20label%3A%22help%20wanted%22" alt="GitHub issues by-label">
-  <img src="https://img.shields.io/github/issues/meshery/meshery/help%20wanted.svg?color=informational" /></a>
-<a href="https://github.com/meshery/meshery/blob/master/LICENSE" alt="LICENSE">
-  <img src="https://img.shields.io/github/license/meshery/meshery?color=brightgreen" /></a>
-<a href="https://artifacthub.io/packages/helm/meshery/meshery" alt="Artifact Hub Meshery">
-  <img src="https://img.shields.io/endpoint?color=brightgreen&label=Helm%20Chart&style=plastic&url=https%3A%2F%2Fartifacthub.io%2Fbadge%2Frepository%2Fartifact-hub" /></a>  
-<a href="https://goreportcard.com/report/github.com/meshery/meshery" alt="Go Report Card">
-  <img src="https://goreportcard.com/badge/github.com/meshery/meshery" /></a>
-<a href="https://github.com/meshery/meshery/actions" alt="Build Status">
-  <img src="https://img.shields.io/github/actions/workflow/status/meshery/meshery/release-drafter.yml" /></a>
-<a href="https://bestpractices.coreinfrastructure.org/projects/3564" alt="CLI Best Practices">
-  <img src="https://bestpractices.coreinfrastructure.org/projects/3564/badge" /></a>
-<a href="https://discuss.meshery.io" alt="Discuss Users">
-  <img src="https://img.shields.io/discourse/users?label=discuss&logo=discourse&server=http%3A%2F%2Fdiscuss.meshery.io" /></a>
-<a href="https://slack.meshery.io" alt="Join Slack">
-  <img src="https://img.shields.io/badge/Slack-@meshery.svg?logo=slack" /></a>
-<a href="https://twitter.com/intent/follow?screen_name=mesheryio" alt="Twitter Follow">
-  <img src="https://img.shields.io/twitter/follow/mesheryio.svg?label=Follow+Meshery&style=social" /></a>
-<a href="https://github.com/meshery/meshery/releases" alt="Meshery Downloads">
-  <img src="https://img.shields.io/github/downloads/meshery/meshery/total" /></a>  
+<a href="https://hub.docker.com/r/meshery/meshery">
+  <img alt="Docker pulls" src="https://img.shields.io/docker/pulls/meshery/meshery.svg" /></a>
+<a href="https://github.com/issues?q=is%3Aopen%20is%3Aissue%20archived%3Afalse%20(repo%3Ameshery%2Fmeshery%20OR%20repo%3Aservice-mesh-performance%2Fservice-mesh-performance%20OR%20repo%3Aservice-mesh-patterns%2Fservice-mesh-patterns)%20label%3A%22help%20wanted%22">
+  <img alt="GitHub issues by-label" src="https://img.shields.io/github/issues/meshery/meshery/help%20wanted.svg?color=informational" /></a>
+<a href="https://github.com/meshery/meshery/blob/master/LICENSE">
+  <img alt="LICENSE" src="https://img.shields.io/github/license/meshery/meshery?color=brightgreen" /></a>
+<a href="https://artifacthub.io/packages/helm/meshery/meshery">
+  <img alt="Artifact Hub Meshery" src="https://img.shields.io/endpoint?color=brightgreen&label=Helm%20Chart&style=plastic&url=https%3A%2F%2Fartifacthub.io%2Fbadge%2Frepository%2Fartifact-hub" /></a>  
+<a href="https://goreportcard.com/report/github.com/meshery/meshery">
+  <img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/meshery/meshery" /></a>
+<a href="https://github.com/meshery/meshery/actions">
+  <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/meshery/meshery/release-drafter.yml" /></a>
+<a href="https://bestpractices.coreinfrastructure.org/projects/3564">
+  <img alt="CLI Best Practices" src="https://bestpractices.coreinfrastructure.org/projects/3564/badge" /></a>
+<a href="https://discuss.meshery.io">
+  <img alt="Discuss Users" src="https://img.shields.io/discourse/users?label=discuss&logo=discourse&server=http%3A%2F%2Fdiscuss.meshery.io" /></a>
+<a href="https://slack.meshery.io">
+  <img alt="Join Slack" src="https://img.shields.io/badge/Slack-@meshery.svg?logo=slack" /></a>
+<a href="https://twitter.com/intent/follow?screen_name=mesheryio">
+  <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/mesheryio.svg?label=Follow+Meshery&style=social" /></a>
+<a href="https://github.com/meshery/meshery/releases">
+  <img alt="Meshery Downloads" src="https://img.shields.io/github/downloads/meshery/meshery/total" /></a>  
 <!-- <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery?ref=badge_shield" alt="License Scan Report">
   <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery.svg?type=shield"/></a>  
   -->
 </p>
 
-<img src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/site.png" width="100%" align="center" />
+<img alt="Shape Builder user interface" src="https://raw.githubusercontent.com/meshery-extensions/shape-builder/98531eecdd2c5b01895f1d818f824bf186bf6077/.github/assets/images/site.png" width="100%" align="center" />
 
-This Meshery extension offers an easy way to visually create polygons, outputting the format necessary for Kanvas to recognize and render your custom polygon shape. As a best practice, users are encouraged to select an existing or create acustom shape for their components to best visually signify the function of their component. See the [Components Shape Guide](https://docs.meshery.io/extensions/component-shape-guide) for a list of the built-in component shapes in Meshery.
+This Meshery extension offers an easy way to visually create polygons, outputting the format necessary for Kanvas to recognize and render your custom polygon shape. As a best practice, users are encouraged to select an existing or create a custom shape for their components to best visually signify the function of their component. See the [Components Shape Guide](https://docs.meshery.io/extensions/component-shape-guide) for a list of the built-in component shapes in Meshery.
 
-Interactively, explore existing component shapes easily by looking in [Meshery Playground](https://play.meshery.io) in the Kanvas extension's on the dock at the bottom of the screen. You will see the different types of component shapes in the "Shapes" model as examples.
+Interactively, explore existing component shapes easily by looking in [Meshery Playground](https://play.meshery.io) in the Kanvas extension's dock at the bottom of the screen. You will see the different types of component shapes in the "Shapes" model as examples.
 
 ## Usage
 
 Once you have created your custom shape, export your matrix notation and use within a `polygon` shape in your Meshery Component. For example, the following is a plus icon:
 
-#### Custom Shape Example 
+### Custom Shape Example 
 ![Image](https://github.com/user-attachments/assets/4d022a7a-bb78-44e3-9c95-f36b47bd2c97)
 
 ```
@@ -146,7 +145,7 @@ Please do! We're a warm and welcoming community of open source contributors. Ple
   <i>If you like Meshery, please <a href="../../stargazers">★</a> star this repository to show your support! 🤩</i>
  <br />
 <a href="../../stargazers">
- <img align="center" src="https://api.star-history.com/svg?repos=meshery/meshery&type=Date" />
+ <img align="center" alt="Meshery star history chart" src="https://api.star-history.com/svg?repos=meshery/meshery&type=Date" />
 </a></p>
 
 ### License
