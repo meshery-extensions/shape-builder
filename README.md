@@ -1,7 +1,7 @@
 <div>
     <!-- Top section -->
     <div>
-        <img src="https://raw.githubusercontent.com/meshery-extensions/.github/master/profile/assets/img/meshery-extensions-github.png" usemap="#workmap"  />
+      <img alt="Meshery Extensions" src="https://raw.githubusercontent.com/meshery-extensions/.github/master/profile/assets/img/meshery-extensions-github.png" usemap="`#workmap`" />
     </div>
     <!-- Overview section -->
     <div align="center">
@@ -28,7 +28,7 @@
 <!-- Blog Post and Explanation section -->
 <!-- Video Section -->
 <h3 align="center">See Meshery and it's plugins in-action</h3>
-    <img src="https://raw.githubusercontent.com/meshery/.github/master/profile/assets/img/meshery-dashboard-hero-image.png"  />
+  <img alt="Meshery dashboard" src="https://raw.githubusercontent.com/meshery/.github/master/profile/assets/img/meshery-dashboard-hero-image.png" />
 
 # Shape Builder
 
