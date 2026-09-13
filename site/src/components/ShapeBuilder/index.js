@@ -19,11 +19,10 @@ const READOUT_PRECISION = 3;
 
 /*
  * Maps a point in canvas pixels onto -1..1 relative to the canvas centre.
- * Note this is measured off the live element, whereas `showCytoArray` still
- * normalizes against a hardcoded 260px half-extent; the two agree only while
- * the canvas is 520px square, which it is not at most viewport widths. That
- * hardcoded divisor predates this feature and is left for a separate change so
- * the polygon output contract is not altered here.
+ * The SVG has no viewBox, so its user space is CSS pixels at whatever size the
+ * viewport gives it; the half-extents must come from the rendered rect, never
+ * a fixed canvas size. Both the export and the hover readout go through here
+ * so the two always agree.
  */
 const normalizeToCanvas = (x, y, rect) => [
   (x - rect.width / 2) / (rect.width / 2),
@@ -94,8 +93,11 @@ const ShapeBuilder = () => {
       const points = getPlottedPoints(poly);
       if (!points) throw new Error("Invalid or empty polygon points");
 
+      const rect = boardRef.current?.getBoundingClientRect();
+      if (!rect?.width || !rect?.height) throw new Error("Canvas has no rendered size");
+
       const normalized = points
-        .map(([x, y]) => [(x - 260) / 260, (y - 260) / 260])
+        .map(([x, y]) => normalizeToCanvas(x, y, rect))
         .flat()
         .join(" ");
       setResult(normalized);
