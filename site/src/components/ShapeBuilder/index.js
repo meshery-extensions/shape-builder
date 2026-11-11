@@ -2,10 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper, CanvasContainer, OutputBox, StyledSVG, CopyButton, CoordinateDisplay } from "./shapeBuilder.styles";
 import { Button, Typography, Box, CopyIcon, Select, MenuItem, Slider, FormControl } from "@sistent/sistent";
-import { SVG, extend as SVGextend } from "@svgdotjs/svg.js";
-import draw from "@svgdotjs/svg.draw.js";
-
-SVGextend(SVG.Polygon, draw);
+import { SVG } from "@svgdotjs/svg.js";
+import "@svgdotjs/svg.draw.js";
 
 const SCALE_PRESETS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 const MIN_SCALE = 0.1;

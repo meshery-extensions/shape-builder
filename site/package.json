@@ -1,4 +1,3 @@
-
 {
   "name": "site",
   "version": "1.0.0",
@@ -17,7 +16,12 @@
     "clean": "gatsby clean",
     "lint": "eslint --fix .",
     "checklint": "eslint .",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "pretest": "eslint ."
+  },
+  "overrides": {
+    "eslint-plugin-react": {
+      "eslint": "$eslint"
+    }
   },
   "dependencies": {
     "@mui/icons-material": "^5.15.14",
@@ -36,5 +40,11 @@
     "styled-components": "^6.5.3",
     "url": "^0.11.3",
     "xstate": "^5.19.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.14.0"
   }
 }
